@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    "*.ejs": "html",
+    "ostream": "cpp",
+    "string_view": "cpp",
+    "vector": "cpp",
+    "istream": "cpp",
+    "*.tcc": "cpp"
+  }
+}
