@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#define MAX_STUDENTS 5
+#define MAX_STUDENTS 10
 #define NO_DATA -1
 
 using namespace std;
@@ -45,7 +45,10 @@ class Classroom {
         while (getchar() != '\n');
         getline(cin, students[i], '\n');
         cout << "Ingrese la calificación del estudiante " << i + 1 << ": ";
-        cin >> notes[i];
+
+        do {
+          cin >> notes[i];
+        } while (isNoteNotInRange(notes[i]));
 
         size++;
       }
@@ -284,10 +287,18 @@ class Classroom {
 
     sortByName();
 
+    cout << "name: " << name.length() << students[low].length() << endl;
+
+    cout << "name: " << (low <= high) << (name >= students[low]) << (name <= students[high]) << endl;
+
     while (low <= high && name >= students[low] && name <= students[high]) {
         int d = (static_cast<int>(high - low) / (students[high].length() - students[low].length() ? students[high].length() - students[low].length() : 1));
-        int l = name.length() - students[low].length() ? name.length() - students[low].length() : 1;
+        int l = name.length() - students[low].length() < 0  ? name.length() - students[low].length() : 1;
         int pos = low + d * l;
+
+        cout << "pos: " << pos << endl;
+
+        cout << "pos: " << pos << endl;
 
         int comparison = name.compare(students[pos]);
 
@@ -323,8 +334,12 @@ class Classroom {
 
       sortByName();
 
+      cout << "name: " << name << endl;
+
       while (low <= high) {
         mid = (low + high) / 2;
+
+        cout << "mid: " << mid << endl;
 
         if (students[mid] == name) {
           return mid;
@@ -437,6 +452,16 @@ class Classroom {
 
     void showIterations() {
       cout << "Iteraciones: " << iterations << endl;
+    }
+
+    bool isNoteNotInRange(float note) {
+      bool isNotInRange = note < 0 || note > 10;
+
+      if (isNotInRange) {
+        cout << "La calificación debe estar entre 0 y 10. Intente de nuevo: ";
+      }
+
+      return isNotInRange;
     }
 };
 

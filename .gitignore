@@ -1,2 +1,4 @@
 *.dotx
 *.docx
+/**/main
+/**/*.out
